@@ -1,3 +1,9 @@
+Disclaimer
+------------
+DCC++ is an open-source hardware and software system for the operation of DCC-equipped model railroads.
+It was originally developed under GPL 3.0 by DccPlusPlus and this is a link to the original branch.
+https://github.com/DccPlusPlus/BaseStation
+
 What’s DCC++
 ------------
 
@@ -18,7 +24,7 @@ To utilize this sketch, simply download a zip file of this repository and open t
 
 The latest production based on release of the Master branch is 1.2.1:
 
-* Supports both the Arduino Uno and Arduino Mega
+* Supports only Arduino Mega!
 * Built-in configuration for both the original Arduino Motor Shield as well as a Pololu MC33926 Motor Shield
 * Built-in configuration and support of Ethernet Shields (for use with Mega only)
 * Support for HC05/HC06 bluetooth module on Serial1
