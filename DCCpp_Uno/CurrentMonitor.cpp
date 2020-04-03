@@ -32,8 +32,10 @@ void CurrentMonitor::check(){
     digitalWrite(SIGNAL_ENABLE_PIN_PROG,LOW);                                                     // disable both Motor Shield Channels
     digitalWrite(SIGNAL_ENABLE_PIN_MAIN,LOW);                                                     // regardless of which caused current overload
     INTERFACE.print(msg);                                                                            // print corresponding error message
+    if(DOUBLE_SERIAL){
+      INTERFACE1.print(msg);
+    }
   }    
 } // CurrentMonitor::check  
 
 long int CurrentMonitor::sampleTime=0;
-

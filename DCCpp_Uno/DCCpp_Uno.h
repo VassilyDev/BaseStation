@@ -96,6 +96,7 @@ Part of DCC++ BASE STATION for the Arduino
 
   #define COMM_TYPE 0
   #define INTERFACE Serial
+  #define INTERFACE1 Serial1
 
 #elif (COMM_INTERFACE==1) || (COMM_INTERFACE==2) || (COMM_INTERFACE==3)
 
@@ -131,5 +132,3 @@ Part of DCC++ BASE STATION for the Arduino
 /////////////////////////////////////////////////////////////////////////////////////
 
 #endif
-
-

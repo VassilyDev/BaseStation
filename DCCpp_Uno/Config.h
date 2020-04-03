@@ -32,6 +32,7 @@ Part of DCC++ BASE STATION for the Arduino
 //  3 = Seeed Studio Ethernet/SD-Card Shield W5200
 
 #define COMM_INTERFACE   0
+#define DOUBLE_SERIAL true
 
 /////////////////////////////////////////////////////////////////////////////////////
 //
@@ -55,4 +56,3 @@ Part of DCC++ BASE STATION for the Arduino
 #define MAC_ADDRESS {  0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xEF }
 
 /////////////////////////////////////////////////////////////////////////////////////
-

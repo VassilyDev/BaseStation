@@ -85,6 +85,14 @@ void Output::activate(int s){
   digitalWrite(data.pin,data.oStatus ^ bitRead(data.iFlag,0));      // set state of output pin to HIGH or LOW depending on whether bit zero of iFlag is set to 0 (ACTIVE=HIGH) or 1 (ACTIVE=LOW)
   if(num>0)
     EEPROM.put(num,data.oStatus);
+  if(DOUBLE_SERIAL){
+    INTERFACE1.print("<Y");
+    INTERFACE1.print(data.id);
+  if(data.oStatus==0)
+    INTERFACE1.print(" 0>");
+  else
+    INTERFACE1.print(" 1>"); 
+  }
   INTERFACE.print("<Y");
   INTERFACE.print(data.id);
   if(data.oStatus==0)
@@ -109,8 +117,12 @@ void Output::remove(int n){
 
   if(tt==NULL){
     INTERFACE.print("<X>");
+    if(DOUBLE_SERIAL){
+      INTERFACE1.print("<X>");
+    }
     return;
   }
+  
   
   if(tt==firstOutput)
     firstOutput=tt->nextOutput;
@@ -120,6 +132,9 @@ void Output::remove(int n){
   free(tt);
 
   INTERFACE.print("<O>");
+  if(DOUBLE_SERIAL){
+      INTERFACE1.print("<O>");
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -129,6 +144,9 @@ void Output::show(int n){
 
   if(firstOutput==NULL){
     INTERFACE.print("<X>");
+    if(DOUBLE_SERIAL){
+      INTERFACE1.print("<X>");
+    }
     return;
   }
     
@@ -162,6 +180,9 @@ void Output::parse(char *c){
         t->activate(s);
       else
         INTERFACE.print("<X>");
+        if(DOUBLE_SERIAL){
+          INTERFACE1.print("<X>");
+        }
       break;
 
     case 3:                     // argument is string with id number of output followed by a pin number and invert flag
@@ -231,6 +252,9 @@ Output *Output::create(int id, int pin, int iFlag, int v){
   if(tt==NULL){       // problem allocating memory
     if(v==1)
       INTERFACE.print("<X>");
+      if(DOUBLE_SERIAL){
+        INTERFACE1.print("<X>");
+      }
     return(tt);
   }
   
@@ -244,6 +268,9 @@ Output *Output::create(int id, int pin, int iFlag, int v){
     digitalWrite(tt->data.pin,tt->data.oStatus ^ bitRead(tt->data.iFlag,0));
     pinMode(tt->data.pin,OUTPUT);
     INTERFACE.print("<O>");
+    if(DOUBLE_SERIAL){
+      INTERFACE1.print("<O>");
+    }
   }
   
   return(tt);
@@ -253,4 +280,3 @@ Output *Output::create(int id, int pin, int iFlag, int v){
 ///////////////////////////////////////////////////////////////////////////////
 
 Output *Output::firstOutput=NULL;
-

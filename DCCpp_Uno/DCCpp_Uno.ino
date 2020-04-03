@@ -219,8 +219,16 @@ void loop(){
 
 void setup(){  
 
-  Serial.begin(115200);            // configure serial interface
+  Serial.begin(9600);            // configure serial interface
   Serial.flush();
+
+  if(DOUBLE_SERIAL){
+    pinMode( 15, INPUT_PULLUP );
+    pinMode( 17, INPUT_PULLUP );
+    pinMode( 19, INPUT_PULLUP );
+    Serial1.begin(9600);            // configure serial interface
+    Serial1.flush();
+  }
 
   #ifdef SDCARD_CS
     pinMode(SDCARD_CS,OUTPUT);
@@ -557,7 +565,3 @@ void showConfiguration(){
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-
-
-
-
